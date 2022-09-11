@@ -1,0 +1,123 @@
+﻿@model TestFinal.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Registration";
+}
+
+<style>
+    .gradient-custom-2 {
+        background: hsla(200, 100%, 46%, 1);
+
+        background: linear-gradient(270deg, hsla(200, 100%, 46%, 1) 0%, hsla(77, 61%, 52%, 1) 100%);
+
+        background: -moz-linear-gradient(270deg, hsla(200, 100%, 46%, 1) 0%, hsla(77, 61%, 52%, 1) 100%);
+
+        background: -webkit-linear-gradient(270deg, hsla(200, 100%, 46%, 1) 0%, hsla(77, 61%, 52%, 1) 100%);
+    }
+</style>
+
+
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    @*<img src="~/images/logo.jpg"
+                                         style="width: 100px;" alt="logo">*@
+                                    <h4 class="mt-1 mb-5 pb-1">INREGISTRARE</h4>
+                                </div>
+
+                                <form enctype="multipart/form-data" method="post">
+                                    <p>Please login to your account</p>
+
+                                    <div class="form-outline mb-4">
+                                         <label asp-for="Email">Email</label>
+                                        <input type="email" asp-for="Email" class="form-control"
+                                               placeholder="name@example.com" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="Password" class="form-label">Parola</label>
+                                        <input type="password" asp-for="Password" class="form-control"
+                                               placeholder="Password" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="ConfirmPassword" class="form-label">Repeta parola</label>
+                                        <input type="password" asp-for="ConfirmPassword" class="form-control"
+                                               placeholder="Password" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+
+                                     <div class="form-outline mb-4">
+                                        <label asp-for="FirstName" class="form-label">Nume</label>
+                                        <input type="text" asp-for="FirstName" class="form-control"
+                                               placeholder="Nume" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="LastName" class="form-label">Prenume</label>
+                                        <input type="text" asp-for="LastName" class="form-control"
+                                               placeholder="Prenume" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="Oras" class="form-label">Oras</label>
+                                        <input type="text" asp-for="Oras" class="form-control"
+                                               placeholder="Oras" />
+                                        <span asp-validation-for="Oras" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label asp-for="NumberPhone" class="form-label">Telefon</label>
+                                        <input type="text" asp-for="NumberPhone" class="form-control"
+                                               placeholder="07" />
+                                        <span asp-validation-for="NumberPhone" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label asp-for="ProfilePhoto" class="input-group-text" for="inputGroupFile02">Fotografie profil</label>
+                                        <input asp-for="ProfilePhoto" type="file" class="form-control custom-file-input" id="inputGroupFile02">
+                                        <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button class="btn fa-lg mb-3 text-white" type="submit" style="background-color: #a5cf39;">
+                                            Inregistrare    
+                                        </button>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2 mr-2">Ai deja cont?</p>
+                                        <a asp-action="login" asp-controller="account">
+                                            <button 
+                                            type="button" class="btn text-white" 
+                                            style="background-color: #a5cf39;">Autentificare</button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">E-Thermal</h4>
+                                <p class="small mb-0">
+                                    Produsele și serviciile noastre oferă transparența consumului 
+                                    individual de energie pentru clienții noștri, astfel încât aceștia 
+                                    pot economisi energie, reduce costurile și pot diminua emisiile de CO2.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section

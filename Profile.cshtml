@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+@model TestFinal.ViewModels.EditPersonalViewModel
+@{
+    var user = await userManager.GetUserAsync(signInManager.Context.User);
+    var photoPath = "/images/" + (user.ProfilePicture ?? "profile.jpg");
+}
+<div class="container light-style flex-grow-1 container-p-y">
+
+    <h4 class="font-weight-bold py-3 mb-4" style="margin-top:100px;">
+        Profil
+    </h4>
+
+    <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                
+              
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+
+                        <div class="card-body media align-items-center">
+                            <img src="@photoPath" alt="" class="d-block ui-w-80" style="width:200px;height:200px;">
+                            <div class="media-body ml-4" style="width:200px;">
+                            </div>
+                        </div>
+                        <hr class="border-light m-0">
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <h4>@user.Email</h4>
+                                @*<input type="text" class="form-control" placeholder="@user.Email" value="@user.Email">*@
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Nume</label>
+                                <h4>@user.FirstName</h4>
+                                @*<input type="text" class="form-control" placeholder="@user.FirstName" value="@user.FirstName">*@
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Prenume</label>
+                                <h4>@user.LastName</h4>
+                                @*<input type="text" class="form-control" placeholder="@user.LastName" value="@user.LastName">*@
+                            </div>
+
+                        </div>
+                        
+                     </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Telefon</label>
+                            <h4>@user.NumberPhone</h4>
+                            @*<input type="text" class="form-control" placeholder="@user.NumberPhone" value="@user.NumberPhone">*@
+                        </div>
+                    </div>
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="btn text-white" style="background-color:#a5cf39" asp-action="EditPersonalData" asp-controller="Account" asp-route-id="@user.Id">
+                            <i class="fas fa-edit"></i>
+                            Modifica
+                        </a>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+

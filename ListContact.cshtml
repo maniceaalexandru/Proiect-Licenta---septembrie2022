@@ -1,0 +1,173 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@model IEnumerable<Contact>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+<body>
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0.15);
+            align-items: center;
+            justify-content: center;
+        }
+
+            .content-table thead tr {
+                background-color: #00ff90;
+                color: #ffffff;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .content-table th, .content-table td {
+                padding: 12px 15px;
+            }
+
+            .content-table tbody tr {
+                border-bottom: 1px solid #fff;
+            }
+
+                .content-table tbody tr:nth-of-type(even) {
+                    background-color: #f3f3f3;
+                }
+
+                .content-table tbody tr:last-of-type {
+                    border-bottom: 2px solid #009879;
+                }
+
+        .btn-1 {
+            width: 150px;
+            height: 55px;
+            border: none;
+            color: #ffffff;
+            background-color: #ff0000;
+            border-radius: 4px;
+            box-shadow: inset 0 0 0 0 #f9e506;
+            transition: ease-out 0.3s;
+            font-size: 2rem;
+            outline: none;
+        }
+
+            .btn-1:hover {
+                box-shadow: inset 300px 0 0 0 #f9e506;
+                cursor: pointer;
+                color: rgba(0, 0, 0.15)
+            }
+
+        .search_size {
+            width: 200px;
+            height: 40px;
+        }
+
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0.15);
+            align-items: center;
+            justify-content: center;
+        }
+
+            .content-table thead tr {
+                background-color: #00ff90;
+                color: #ffffff;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .content-table th, .content-table td {
+                padding: 12px 15px;
+            }
+
+            .content-table tbody tr {
+                border-bottom: 1px solid #fff;
+            }
+
+                .content-table tbody tr:nth-of-type(even) {
+                    background-color: #f3f3f3;
+                }
+
+                .content-table tbody tr:last-of-type {
+                    border-bottom: 2px solid #009879;
+                }
+    </style>
+
+    @if (Model.Any())
+    {
+        int i = 1;
+        <div class="content container-fluid">
+            <div class="container-fluid text-center container-content">
+                <h2 class="">
+
+                    <br>
+                    Manage Messages
+                </h2>
+            </div>
+            <div class="container-fluid text-center container-content">
+                <hr>
+                <div class="card mb-3">
+                    
+                    <div class="card-body mx-auto">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text">
+                        </p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nr. Contact</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Actiuni</th>
+                                </tr>
+                            </thead>
+                            @foreach (var contact in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@i</th>
+                                        <td>@contact.ContactId</td>
+                                        <td>@contact.Name</td>
+                                        <td>@contact.Email</td>
+                                        <td>@contact.Message</td>
+                                        
+                                        <td>
+
+                                            <a class="btn btn-danger" asp-action="DeleteContact" asp-controller="contact" asp-route-id="@contact.ContactId">
+                                                 <i class="fa-solid fa-trash"></i>
+                                                 Sterge
+                                            </a>
+                                            <a class="btn text-white" style="background-color: #A5CF39" asp-action="Response" asp-controller="contact" asp-route-id="@contact.ContactId">
+                                                <i class="fa fa-envelope"></i>
+                                                Raspunde
+                                            </a>
+                                    </tr>
+                                </tbody>
+                                i++;               
+                            }
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+   
+</body>
+</html>

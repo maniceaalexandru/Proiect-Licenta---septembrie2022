@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Category>
+
+@{ ViewData["Title"] = " - Categorie"; }
+
+
+@if (Model.Any())
+{
+    int i = 1;
+<div class="content container-fluid">
+    <div class="container-fluid text-center container-content">
+        <h2 class="">
+
+            <br>
+            Administreaza categorie
+        </h2>
+    </div>
+    <div class="container-fluid text-center container-content">
+        <hr>
+        <div class="card mb-3">
+            <div class="card-header bg-custom text-black">
+                 Lista categorii
+            </div>
+            <div class="card-body mx-auto">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                </p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID categorie</th>
+                            <th scope="col">Nume categorie</th>
+                            <th scope="col">Actiuni</th>
+                        </tr>
+                    </thead>
+                    @foreach (var option in Model)
+                    {
+    <tbody>
+        <tr>
+            <th scope="row">@i</th>
+            <td>@option.CategoryId</td>
+            <td>@option.CategoryName</td>
+
+            <td>
+    
+                <a class="btn btn-danger" asp-action="DeleteCategory" asp-controller="category" asp-route-id="@option.CategoryId">
+                    <i class="fa-solid fa-trash"></i>
+                    Sterge
+                </a>
+        </tr>
+    </tbody>i++;
+                    }
+
+                </table>
+            </div>
+
+        </div>
+        <div class="card mb-3">   
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                
+                <a class="btn text-white" style="background-color: #A5CF39;" asp-action="CreateCategory" asp-controller="category">
+                    <i class="fas fa-user-plus"></i>
+                    Creaza categorie noua
+                </a>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div> }
+           

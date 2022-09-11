@@ -1,0 +1,69 @@
+﻿@model TestFinal.ViewModels.EditPersonalViewModel
+@{
+    ViewBag.Title = "Edit Personal Information";
+
+
+}
+
+
+
+<h3 style="margin-top:100px;">Modifica profil</h3>
+<div class="container">
+    <form enctype="multipart/form-data" method="post" class="mt-3">
+        <div class="form-group row">
+            <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="Oras" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Oras" class="form-control">
+                <span asp-validation-for="Oras" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="NumberPhone" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="NumberPhone" class="form-control">
+                <span asp-validation-for="NumberPhone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <input asp-for="ProfilePhoto" type="file" class="form-control custom-file-input" id="inputGroupFile02">
+            <label asp-for="ProfilePhoto" class="input-group-text" for="inputGroupFile02">Poza de Profil</label>
+            <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn text-white" style="background-color: #a5cf39;">Update</button>
+                <a asp-action="Profile" asp-controller="account" class="btn text-white" style="background-color: #a5cf39;">Cancel</a>
+            </div>
+        </div>
+
+
+
+
+    </form>
+</div>
