@@ -1,0 +1,139 @@
+﻿@model Product
+@using System.Net
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ ViewData["Title"] = "Details";
+    var photoPath = "/images/" + (Model.ProductPicture ?? "img.png");
+    var photoPath2 = "/images/" + (Model.ProductPicture2 ?? "img.png");
+    var photoPath3 = "/images/" + (Model.ProductPicture3 ?? "img.png");
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #f5f5f5
+}
+
+.hedding {
+    font-size: 20px;
+    color: #ab8181;
+}
+
+.main-section {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, 5%);
+}
+
+.left-side-product-box img {
+    width: 100%;
+}
+
+.left-side-product-box .sub-img img {
+    margin-top: 5px;
+    width: 83px;
+    height: 100px;
+}
+
+.right-side-pro-detail span {
+    font-size: 15px;
+}
+
+.right-side-pro-detail p {
+    font-size: 25px;
+    color: #a1a1a1;
+}
+
+.right-side-pro-detail .price-pro {
+    color: #a5cf39;
+}
+
+.right-side-pro-detail .tag-section {
+    font-size: 18px;
+    color: #5D4C46;
+}
+
+.pro-box-section .pro-box img {
+    width: 100%;
+    height: 200px;
+}
+
+
+
+    </style>
+
+
+    <div class="container">
+        <div class="col-lg-8 border p-3  bg-white">
+            <div class="row hedding m-0 pl-3 pt-0 pb-3">
+            </div>
+            <div class="row m-0">
+                <div class="col-lg-4 left-side-product-box pb-3">
+                    <img src="@photoPath" class="border p-3" id="first_image">
+                    <span class="sub-img">
+                        <img src="@photoPath" class="border p-2" onclick="myFunction(this);">
+                        <img src="@photoPath2" class="border p-2" onclick="myFunction(this);">
+                        <img src="@photoPath3" class="border p-2" onclick="myFunction(this);">
+                    </span>
+                </div>
+                <div class="col-lg-8">
+                    <div class="right-side-pro-detail border p-3 m-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span></span>
+                                <p class="m-0 p-0">@Model.ProductName</p>
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="m-0 p-0 price-pro">@Model.Pret RON</p>
+                                <hr class="p-0 m-0">
+                            </div>
+                           
+                            <div class="col-lg-12">
+                                <p class="tag-section"><strong>Categorie: </strong>@Model.Subcategorie.Categories.CategoryName / @Model.Subcategorie.Nume</p>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <h6>Cantitate:</h6>
+                                <input name="amount" id="test" type="number" class="form-control text-center w-100" placeholder="1">
+                            </div>
+                            <div class="col-lg-12 mt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 pb-2">
+                                        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId" asp-route-amount="test" class="btn w-100 text-white" style="background-color: #a5cf39;">Adauga in cos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>var $content = $('.menu-content');
+
+        function showContent(type) {
+            $content.hide().filter('.' + type).show();
+        }
+
+        $('.menu').on('click', '.menu-btn', function (e) {
+            showContent(e.currentTarget.hash.slice(1));
+            e.preventDefault();
+        });
+
+        // show 'about' content only on page load (if you want)
+        showContent('about');</script>
+    <script>function myFunction(imgs) {
+  var expandImg = document.getElementById("first_image");
+  expandImg.src = imgs.src;
+  expandImg.parentElement.style.display = "block";
+}</script>
+</body>
+</html>

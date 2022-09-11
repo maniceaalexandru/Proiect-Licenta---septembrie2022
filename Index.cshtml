@@ -1,102 +1,146 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager;
+@model IEnumerable<Subscription>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
 
-<div class="pt-1 row" style="margin-top:50px;">
-    <div class="col">
-        <!--Carousel Wrapper-->
-    <div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-2" data-slide-to="1"></li>
-            <li data-target="#carousel-example-2" data-slide-to="2"></li>
-            <li data-target="#carousel-example-2" data-slide-to="3"></li>
-        </ol>
-        <!--/.Indicators-->
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <img class="d-block img-responsive" src="~/images/reclama1.jpg" style="width: 840px; height: 460px; object-fit:cover;" alt="First slide">
-                <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.50);">
-                    <h5>SURSA TA DE ENERGIE</h5>
-                    <p></p>
-                </div>
+</head>
+<body>
+    <style>
 
-            </div>
-            <div class="carousel-item">
-                <!--Mask color-->
-                <img class="d-block img-responsive" src="~/images/reclama2.jpg" style="width: 840px; height: 460px; object-fit:cover;" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.50);">
-                    <h5>SURSA TA DE ENERGIE</h5>
-                    <p></p>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0.15);
+            align-items: center;
+            justify-content: center;
+        }
+
+            .content-table thead tr {
+                background-color: #00ff90;
+                color: #ffffff;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .content-table th, .content-table td {
+                padding: 12px 15px;
+            }
+
+            .content-table tbody tr {
+                border-bottom: 1px solid #fff;
+            }
+
+                .content-table tbody tr:nth-of-type(even) {
+                    background-color: #f3f3f3;
+                }
+
+                .content-table tbody tr:last-of-type {
+                    border-bottom: 2px solid #009879;
+                }
+
+        .btn-1 {
+            width: 150px;
+            height: 55px;
+            border: none;
+            color: #ffffff;
+            background-color: #ff0000;
+            border-radius: 4px;
+            box-shadow: inset 0 0 0 0 #f9e506;
+            transition: ease-out 0.3s;
+            font-size: 2rem;
+            outline: none;
+        }
+
+            .btn-1:hover {
+                box-shadow: inset 300px 0 0 0 #f9e506;
+                cursor: pointer;
+                color: rgba(0, 0, 0.15)
+            }
+
+        .search_size {
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+
+    <h3>Lista abonamente</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="ShowSearchResults">
+                <div class="form-group">
+                    <label for="SearchPhrase" class="control-label"></label>
+                    <input name="SearchPhrase" class="form-control" />
                 </div>
-            </div>
-            <div class="carousel-item">
-                <!--Mask color-->
-                <img class="d-block img-responsive" src="~/images/reclama3.jpg" style="width: 840px; height: 460px; object-fit:cover;" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.50);">
-                    <h5>SURSA TA DE ENERGIE</h5>
-                    <p></p>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn text-white" style="margin-top:10px; background-color: #009de9" />
                 </div>
-            </div>
-            <div class="carousel-item">
-                <!--Mask color-->
-                <img class="d-block img-responsive" src="~/images/reclama4.jpg" style="width: 840px; height: 460px; object-fit:cover;" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.50);">
-                    <h5>SURSA TA DE ENERGIE</h5>
-                    <p></p>
-                </div>
-            </div>
+            </form>
         </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--/.Controls-->
     </div>
-    <!--/.Carousel Wrapper-->
-    </div>
-    <div class="col">
-        <h1>Despre noi</h1>
-        <h3>Beneficii pentru proprietari și locatari</h3>
-        <p>
-            Produsele și serviciile noastre oferă transparența consumului individual de 
-        energie pentru clienții noștri, astfel încât aceștia pot economisi energie, 
-        reduce costurile și pot diminua emisiile de CO2. Acest fapt conduce la creșterea 
-        eficienței energetice, și prin urmare a valorii proprietății. Și astfel, proprietarii și 
-        locatarii clădirilor contribuie activ la protecția mediului. În medie, 
-        fiecare gospodărie economisește 20% din consumul său anual de energie termică și implicit, 
-        din costurile aferente. Numai în Germania, în fiecare an, sunt evitate emisii 
-        de circa patru milioane de tone de CO2 de către clienții noștri.
-        </p>
-        <h3>Tehnologia invinge</h3>
-        <p>
-            Lumea produselor și serviciilor noastre este una digitală. Aparatele noastre fac 
-            posibilă administrarea ușoară a clădirii pe bază de date de consum, eliminând în 
-            special citirea tradițională în locație a aparatelor. Acest fapt crește confortul 
-            pentru proprietari și locatari, prin eliminarea termenelor pentru citirea aparatelor și 
-            a timpilor de așteptare, reducând și timpul de gestionare a datelor și proceselor.
-        </p>
-        <p>
-            Infrastructura noastră digitală poate fi folosită și pentru alte aplicații, 
-            cum ar fi alarmele de fum digitale care pot fi deservite de la distanță, 
-            crescând prin urmare siguranța proprietarilor și locatarilor.
-        </p>
-    </div>
-</div>
+    @{
+        var isSubscribed = ViewData["subscribed"];
+    }
 
+    <table class="table table-striped" style="width: 600px;">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Tip</th>
+                <th scope="col">Timp</th>
+                <th scope="col">Descriere</th>
+                <th scope="col">Pret</th>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin")) {
+                    <th scope="col">Actiuni</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var subscription in Model)
+        {
+        <tr>
+            <td>@subscription.Id</td>
+            <td>@subscription.Type</td>
+            <td>@subscription.Time</td>
+            <td>@subscription.Specification</td>
+            <td>@subscription.Price</td>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                <td>
+                    <a class="btn btn-danger" asp-action="deletesubscription" asp-controller="subscription" asp-route-id="@subscription.Id">
+                        <i class="fa-solid fa-trash"></i>
+                        Sterge
+                    </a>
+                    <a class="btn text-white" style="background-color: #a5cf39;" asp-action="editsubscription" asp-controller="subscription" asp-route-id="@subscription.Id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Modifica
+                    </a>
+                </td>
+                } 
+                else if (isSubscribed == null)
+                {
+                <td>
+                    <a class="btn text-white" style="background-color: #a5cf39;" asp-action="addsubscriptiontouser" asp-controller="subscription" asp-route-id="@subscription.Id">
+                        <i class="fa fa-cart-plus"></i>
+                        Alege abonament
+                    </a>
+                </td>
+                }
+         </tr>
+        }
+    </table>
 
-
-
-<!-- Remove the container if you want to extend the Footer to full width. -->
-
-<!-- Footer -->
-<!-- End of .container -->
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <a class="btn mb-2 text-white" style="background-color: #a5cf39;" 
+        asp-controller="subscription" asp-action="createsubscription">Adauga abonament nou</a>
+    }
+</body>
+</html>

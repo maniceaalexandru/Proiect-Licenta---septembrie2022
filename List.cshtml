@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+    @foreach (var product in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@product.OrderId</td>
+                <td>@product.FirstName</td>
+                <td>@product.LastName</td>
+                <td>@product.Address</td>
+                <td>@product.City</td>
+                <td>@product.OrderTotal</td>
+                <td>@product.PhoneNumber</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="DeleteOrder" asp-controller="order" asp-route-id="@product.OrderId">
+                        <i class="fas fa-edit"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+
+    }
+</table>
+<div style="height:200px;">
+
+</div>

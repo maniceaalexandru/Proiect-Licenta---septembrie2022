@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Product>
+
+@{ ViewData["Title"] = " - Produs"; }
+<html>
+<head>
+
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    @if (Model.Any())
+    {
+        int i = 1;
+<div class="content container-fluid">
+    <div class="container-fluid text-center container-content">
+        <h2 class="">
+
+            <br>
+            Manage Products
+        </h2>
+    </div>
+    <div class="container-lg text-center container-content">
+        <hr>
+        <div class="card mb-3">
+            
+            <div class="card-body mx-auto">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                </p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Subcategory</th>
+                            <th scope="col">Price</th>                  
+                            <th scope="col">Update stock</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    @foreach (var product in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                @if (product.ProductStock == 0)
+                                {
+                            <th style="background-color:#F62817" scope="row">@i</th>
+                                 <td style="background-color:#F62817">@product.ProductId</td>
+                                 <td style="background-color:#F62817">@product.ProductName</td>
+                                 <td style="background-color:#F62817">@product.Subcategorie.Categories.CategoryName</td>
+                                 <td style="background-color:#F62817">@product.Subcategorie.Nume</td>
+                                 <td style="background-color:#F62817">@product.Pret</td>                                                                                                                                                             
+                                 <td style="background-color:#F62817">
+                                  <form method="post" asp-controller="Product" asp-action="UpdateStock" asp-route-productId="@product.ProductId">
+                                      <div class="row" style="margin-left:1px; margin-right:0; height:40px; width:150px;">
+                                      <input name="amount" placeholder="@product.ProductStock" value="@product.ProductStock" style="height:40px; width:30px;" />
+                                      <button type="submit" class="btn text-white" style="margin-left:5px; background-color: #009de9;">Update</button>
+                                      </div>
+                                  </form>
+                                 </td>
+                                 <td style="width:fit-content;background-color:#F62817">
+                                  <a class="btn text-white" style="background-color: #a5cf39;" asp-action="EditProduct" asp-controller="product" asp-route-id="@product.ProductId">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    Modifica
+                                  </a>
+                                  <a class="btn btn-danger" asp-action="DeleteProduct" asp-controller="product" asp-route-id="@product.ProductId">
+                                    <i class="fa-solid fa-trash"></i>  
+                                    Delete
+                                  </a>
+                                  </td> }
+                                   else{
+          
+                                    <th scope="row">@i</th>
+                                      <td>@product.ProductId</td>
+                                      <td>@product.ProductName</td>
+                                      <td>@product.Subcategorie.Categories.CategoryName</td>
+                                      <td>@product.Subcategorie.Nume</td>
+                                      <td>@product.Pret</td>
+                                      <td>
+                                         <form method="post" asp-controller="Product" asp-action="UpdateStock" asp-route-productId="@product.ProductId">
+                                          <div class="row" style="margin-left:1px; margin-right:0; height:40px; width:150px;">
+                                          <input name="amount" placeholder="@product.ProductStock" value="@product.ProductStock" style="height:40px; width:30px;" />
+                                          <button type="submit" class="btn text-white" style="margin-left:7px; background-color: #009de9;">Update</button>
+                                          </div>
+                                          </form>
+                                          </td>
+                                         <td style="width:fit-content;">
+                                           <a class="btn text-white" style="background-color: #a5cf39;" asp-action="EditProduct" asp-controller="product" asp-route-id="@product.ProductId">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                Modifica
+                                           </a>
+                                           <a class="btn btn-danger" asp-action="DeleteProduct" asp-controller="product" asp-route-id="@product.ProductId">
+                                                <i class="fa-solid fa-trash"></i>  
+                                               Delete
+                                            </a>                                                                                                                                                                                                                                                                                                                                                                                                                             
+                                          </td>}
+                            </tr>
+                        </tbody>i++;
+                    }
+                </table>
+            </div>
+        </div>
+      
+        <hr>
+        <div class="card mb-3">
+          
+            <div class="card-body">
+                
+                <a class="btn text-white" style="background-color: #A5CF39;" asp-action="CreateProduct" asp-controller="product">
+                    <i class="fas fa-user-plus"></i>
+                    Creaza produs nou
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div> }
+
+</body>
+</html>
+

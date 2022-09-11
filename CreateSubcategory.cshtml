@@ -1,0 +1,58 @@
+﻿@model TestFinal.ViewModels.CreateSubcategoryViewModel
+
+@{ ViewData["Title"] = "Create SubCategory"; }
+
+<div class="content container-fluid">
+    <div class="container-fluid text-center container-content">
+        <h2 class="" style="margin-top:20px;">
+            Adauga subcategorie
+            <br>
+        </h2>
+    </div>
+    <div class="container-fluid text-center container-content">
+        <hr>
+        <div class="card mb-3">
+            <div class="card-header bg-custom text-black">
+                Subcategorie
+            </div>
+            <div class="card-body mx-auto">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+
+                </p>
+                <form enctype="multipart/form-data" class="row gx-3 gy-2 align-items-center" method="post">
+                    <div class="col">
+                        <label asp-for="Nume">Nume subcategorie</label>
+                        <input asp-for="Nume" type="text" class="form-control" style="width: auto" placeholder="Nume" required>
+                        <span asp-validation-for="Nume" class="text-danger"></span>
+
+                        @*<div class="col">
+                            <input asp-for="Photo" type="file" class="form-control custom-file-input" id="inputGroupFile02">
+                            <label asp-for="Photo" class="input-group-text" for="inputGroupFile02">Poza de Profil</label>
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>*@
+                    
+                    </div>
+                    <div class="col">
+                        <label asp-for="Category" class="form-label">Categorie</label>
+                        <select asp-for="Category" class="form-select" asp-items="@(new SelectList(Model.Categories))">
+                            <option selected>Alege...</option>
+                        </select>
+                    </div>
+                    <div class="col align-self-end">
+                        <button type="submit" class="btn text-white" style="background-color: #A5CF39;">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Adauga
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+</div>
+
+
+
+

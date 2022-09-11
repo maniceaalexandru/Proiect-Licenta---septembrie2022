@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager
+
+@using System.Net
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+<h2 class="" style="margin-left:45%">
+    
+</h2>
+
+<div class="row" style="margin-top:20px;">
+    @foreach (var product in Model)
+    {
+        var photoPath = "/images/" + (product.ProductPicture ?? "img.png");
+<div class="col-4">
+    <div class="container-fluid text-center container-content">
+
+        <div class="card mb-3">
+
+            <div class="card-body">
+                <h5 class="card-title">@product.ProductName</h5>
+                <img src="@photoPath" alt="Alternate Text" style="width: 200px; height: 200px" />
+               
+                <p class="card-text">
+                    @product.Pret RON
+                </p>
+                @if (product.ProductStock <= 0)
+                {
+            <p>Product out of stock</p> }
+                else
+                {
+@if (signInManager.IsSignedIn(User) && User.IsInRole("User"))
+{
+
+    var user = await userManager.GetUserAsync(signInManager.Context.User);
+<div class="addToCart">
+    <p class="button">
+        <a class="btn text-white"
+           style="background-color: #a5cf39;"
+           asp-controller="ShoppingCart"
+           asp-action="AddToShoppingCart"
+           asp-route-productId="@product.ProductId">Adauga in cos</a>
+    </p>
+</div>
+                    
+
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@product.ProductId" class="btn text-white" style="background-color: #009de9">
+
+                Detalii
+            </a> }
+                                else
+                                {
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@product.ProductId" class="btn text-white" style="background-color: #009de9">
+         
+                Detalii
+            </a>}}
+
+            </div>
+        </div>
+    </div>
+</div>}
+   
+</div>

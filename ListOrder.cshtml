@@ -1,0 +1,31 @@
+﻿@model IEnumerable<OrderDetail>
+
+@{
+    ViewData["Title"] = "Privacy Policy";
+    var x = ViewData["id"];
+}
+<div style="height:200px;">
+
+</div>
+<div class="container">
+    <table id="myTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nr.Comanda</th>
+                <th scope="col">Produs</th>
+                <th scope="col">Suma</th>
+            </tr>
+        </thead>
+        @foreach (var product in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@product.OrderId</td>
+                    <td>@product.Nume_Produs</td>
+                    <td>@product.Order.OrderTotal</td>
+                </tr>
+            </tbody>
+        }
+        </table>
+</div>
+
